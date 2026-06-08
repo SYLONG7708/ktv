@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "updatedAt": "2026-06-08",
+  "message": "Long KTV cloud catalog sample. Replace songs with licensed media URLs or local file mappings.",
+  "songs": [
+    {
+      "number": "000001",
+      "title": "Public Domain Demo",
+      "artist": "Long KTV",
+      "language": "Instrumental",
+      "category": "Demo",
+      "mediaUrl": "",
+      "lyricUrl": "",
+      "license": "Placeholder metadata only"
+    }
+  ]
+}
+
