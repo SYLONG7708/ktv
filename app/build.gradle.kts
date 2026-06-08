@@ -14,8 +14,8 @@ android {
         applicationId = "tw.com.sylong.carktv"
         minSdk = 23
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.1.0-ultrastar-cc"
+        versionCode = 3
+        versionName = "1.1.1-ultrastar-cc"
     }
 
     buildTypes {

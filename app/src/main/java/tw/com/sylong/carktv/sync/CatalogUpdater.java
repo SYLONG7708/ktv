@@ -148,7 +148,11 @@ public class CatalogUpdater {
         if (url.toLowerCase(Locale.ROOT).endsWith(".gz")) {
             input = new GZIPInputStream(input);
         }
-        return new String(readAll(input, 30 * 1024 * 1024), StandardCharsets.UTF_8);
+        String text = new String(readAll(input, 30 * 1024 * 1024), StandardCharsets.UTF_8);
+        if (!text.isEmpty() && text.charAt(0) == '\uFEFF') {
+            text = text.substring(1);
+        }
+        return text;
     }
 
     private static byte[] downloadBytes(String url) throws IOException {
