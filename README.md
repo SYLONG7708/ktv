@@ -10,9 +10,25 @@ App 預設讀取：
 https://raw.githubusercontent.com/SYLONG7708/ktv/main/catalog/catalog.json
 ```
 
-更新歌庫時修改 `catalog/catalog.json` 的 `version` 與 `songs`，推上 GitHub 後，車機端會在啟動與排程同步時下載新索引。
+更新歌庫時修改 `catalog/catalog.json` 的 `version`，或更新它指向的 `songsUrl` 檔案，推上 GitHub 後，車機端會在啟動與排程同步時下載新索引。
 
 大型 MV、伴奏、音訊檔不建議放 GitHub。建議 `mediaUrl` 指向合法授權的 HTTPS/CDN/NAS 來源，或讓 App 自動掃描車機本地與 USB 儲存。
+
+目前已內建可直接點歌播放的合法測試歌庫：
+
+```text
+catalog/songs-ultrastar-cc.json
+```
+
+來源是 `UltraStar-Deluxe/songs` 的 Creative Commons / Public Domain 歌曲包，只匯入有 `license.txt` 且有實際音訊檔的歌曲。
+
+重新產生歌庫：
+
+```powershell
+git clone --depth 1 https://github.com/UltraStar-Deluxe/songs.git $env:TEMP\ultrastar-songs
+$ref = git -C $env:TEMP\ultrastar-songs rev-parse HEAD
+.\tools\import-ultrastar-cc.ps1 -SourceRoot $env:TEMP\ultrastar-songs -OutputPath .\catalog\songs-ultrastar-cc.json -RawRef $ref
+```
 
 ## Catalog Format
 
@@ -56,4 +72,3 @@ APK 位置：
 ```text
 app/build/outputs/apk/debug/app-debug.apk
 ```
-
