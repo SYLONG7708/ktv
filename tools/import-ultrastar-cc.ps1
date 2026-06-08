@@ -143,5 +143,7 @@ $outputDir = Split-Path -Parent $OutputPath
 if ($outputDir) {
     New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 }
-$payload | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
+$json = $payload | ConvertTo-Json -Depth 6
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText($OutputPath, $json + [Environment]::NewLine, $utf8NoBom)
 Write-Host "Wrote $($songs.Count) playable songs to $OutputPath"
